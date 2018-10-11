@@ -29,11 +29,12 @@ Summary:        The SELinux CIL Compiler
 
 License:        BSD
 URL:            https://github.com/SELinuxProject/selinux/wiki
-Source: %{name}-%{version}.tar.bz2
-Patch1: dont_build_manpages.patch
+Source:         %{name}-%{version}.tar.bz2
+Patch1:         dont_build_manpages.patch
 
 BuildRequires:  gcc
-BuildRequires:  libsepol-static >= %{libsepolver}, flex
+BuildRequires:  flex
+BuildRequires:  libsepol-static >= %{libsepolver}
 
 %description
 The SELinux CIL Compiler is a compiler that converts the CIL language as
