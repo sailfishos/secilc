@@ -24,7 +24,7 @@
 
 Name:           secilc
 Version:        2.8
-Release:        1%{?dist}
+Release:        1
 Summary:        The SELinux CIL Compiler
 
 License:        BSD
