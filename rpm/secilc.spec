@@ -43,17 +43,6 @@ Please see the CIL Design Wiki at:
 http://github.com/SELinuxProject/cil/wiki/
 for more information about the goals and features on the CIL language.
 
-%package doc
-Summary:        Documentation for the SELinux CIL Compiler
-BuildArch:      noarch
-
-%description doc
-The SELinux CIL Compiler is a compiler that converts the CIL language as
-described on the CIL design wiki into a kernel binary policy file.
-Please see the CIL Design Wiki at:
-http://github.com/SELinuxProject/cil/wiki/
-for more information about the goals and features on the CIL language.
-
 %prep
 %setup -q -n %{name}-%{version}/upstream
 %patch1 -p1
@@ -63,7 +52,7 @@ make -C %{name}/ %{?_smp_mflags} CFLAGS="%{optflags}" LIBSEPOL_STATIC=%{_libdir}
 
 
 %install
-make -C %{name}/ %{?_smp_mflags} DESTDIR="%{buildroot}" SBINDIR="%{buildroot}%{_sbindir}" LIBDIR="%{buildroot}%{_libdir}" install
+make -C %{name}/ %{?_smp_mflags} DESTDIR="%{buildroot}" SBINDIR="%{_sbindir}" LIBDIR="%{_libdir}" install
 
 
 %files
