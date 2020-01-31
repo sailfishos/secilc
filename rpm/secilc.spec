@@ -20,10 +20,10 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-%global libsepolver 2.8
+%global libsepolver 3.0
 
 Name:           secilc
-Version:        2.8
+Version:        3.0
 Release:        1
 Summary:        The SELinux CIL Compiler
 
@@ -44,8 +44,7 @@ http://github.com/SELinuxProject/cil/wiki/
 for more information about the goals and features on the CIL language.
 
 %prep
-%setup -q -n %{name}-%{version}/upstream
-%patch1 -p1
+%autosetup -p1 -n %{name}-%{version}/upstream
 
 %build
 make -C %{name}/ %{?_smp_mflags} CFLAGS="%{optflags}" LIBSEPOL_STATIC=%{_libdir}/libsepol.a
@@ -58,4 +57,4 @@ make -C %{name}/ %{?_smp_mflags} DESTDIR="%{buildroot}" SBINDIR="%{_sbindir}" LI
 %files
 %{_bindir}/secilc
 %{_bindir}/secil2conf
-%doc %{name}/COPYING
+%license %{name}/COPYING
