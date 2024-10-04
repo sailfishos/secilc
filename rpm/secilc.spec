@@ -20,17 +20,17 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-%global libsepolver 3.1
+%global libsepolver 3.7
 
 Name:           secilc
-Version:        3.0
+Version:        3.7
 Release:        1
 Summary:        The SELinux CIL Compiler
 
 License:        BSD
 URL:            https://github.com/SELinuxProject/selinux/wiki
 Source:         %{name}-%{version}.tar.bz2
-Patch1:         dont_build_manpages.patch
+Patch1:         0001-Don-t-build-man-pages.patch
 
 BuildRequires:  gcc
 BuildRequires:  flex
@@ -57,4 +57,5 @@ make -C %{name}/ %{?_smp_mflags} DESTDIR="%{buildroot}" SBINDIR="%{_sbindir}" LI
 %files
 %{_bindir}/secilc
 %{_bindir}/secil2conf
-%license %{name}/COPYING
+%{_bindir}/secil2tree
+%license LICENSE

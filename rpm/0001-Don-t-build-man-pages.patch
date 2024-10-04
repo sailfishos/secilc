@@ -1,0 +1,39 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Pekka Vuorela <pekka.vuorela@jolla.com>
+Date: Fri, 4 Oct 2024 10:21:47 +0300
+Subject: [PATCH] Don't build man pages
+
+---
+ secilc/Makefile | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/secilc/Makefile b/secilc/Makefile
+index ef7bc8cd..3141e834 100644
+--- a/secilc/Makefile
++++ b/secilc/Makefile
+@@ -28,7 +28,7 @@ CFLAGS ?= -Wall -Wshadow -Wextra -Wundef -Wmissing-format-attribute -Wcast-align
+ override CFLAGS += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
+ override LDLIBS += -lsepol
+ 
+-all: $(SECILC) $(SECIL2CONF) $(SECIL2TREE) man
++all: $(SECILC) $(SECIL2CONF) $(SECIL2TREE)
+ 
+ $(SECILC): $(SECILC_OBJS)
+ 	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+@@ -56,15 +56,12 @@ $(SECIL2CONF_MANPAGE): $(SECIL2CONF_MANPAGE).xml
+ $(SECIL2TREE_MANPAGE): $(SECIL2TREE_MANPAGE).xml
+ 	$(XMLTO) man $(SECIL2TREE_MANPAGE).xml
+ 
+-install: all man
++install: all
+ 	-mkdir -p $(DESTDIR)$(BINDIR)
+ 	-mkdir -p $(DESTDIR)$(MANDIR)/man8
+ 	install -m 755 $(SECILC) $(DESTDIR)$(BINDIR)
+ 	install -m 755 $(SECIL2CONF) $(DESTDIR)$(BINDIR)
+ 	install -m 755 $(SECIL2TREE) $(DESTDIR)$(BINDIR)
+-	install -m 644 $(SECILC_MANPAGE) $(DESTDIR)$(MANDIR)/man8
+-	install -m 644 $(SECIL2CONF_MANPAGE) $(DESTDIR)$(MANDIR)/man8
+-	install -m 644 $(SECIL2TREE_MANPAGE) $(DESTDIR)$(MANDIR)/man8
+ 
+ doc:
+ 	$(MAKE) -C docs
